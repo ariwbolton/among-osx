@@ -19,7 +19,7 @@ then
     exit 1
 fi
 
-echo running $RUN_NUMBER
+echo Running $RUN_NUMBER!
 
 mkdir -p "$RUN_DIR"
 
@@ -29,6 +29,15 @@ mkdir steam
 mkdir install_folder
 
 curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_osx.tar.gz" | tar zxf - -C steam/
+
+echo "Installing SteamCMD"
+echo
+
+# Silence loading output
+./steam/steamcmd.sh +quit >> /dev/null
+
+echo "Downloading Game!"
+echo
 
 ./steam/steamcmd.sh\
  +login ariwbolton\
