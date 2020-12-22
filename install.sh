@@ -13,6 +13,12 @@ then
   exit 1
 fi
 
+if pgrep -x "steam_osx" > /dev/null
+then
+    echo "Steam is currently running; please quit Steam to continue"
+    exit 1
+fi
+
 echo running $RUN_NUMBER
 
 mkdir -p "$RUN_DIR"
@@ -20,5 +26,13 @@ mkdir -p "$RUN_DIR"
 cd "$RUN_DIR"
 
 mkdir steam
+mkdir install_folder
 
 curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_osx.tar.gz" | tar zxf - -C steam/
+
+./steam/steamcmd.sh\
+ +login ariwbolton\
+ +@sSteamCmdForcePlatformType windows\
+ +force_install_dir ../install_folder\
+ +app_update 764030 validate\
+ +quit
