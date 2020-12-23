@@ -3,6 +3,9 @@
 set -euf -o pipefail
 
 USE_SAVED_ARCHIVES=0
+
+# Positional argument parsing shamelessly stolen from
+# https://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash
 POSITIONAL=()
 
 while [[ $# -gt 0 ]]
