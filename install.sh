@@ -74,6 +74,23 @@ tar zxf "$RUN_DIR/engine/WS11WineCX64Bit19.0.2.tar" -C "$RUN_DIR/engine"
 rm "$RUN_DIR/engine/WS11WineCX64Bit19.0.2.tar.7z"
 rm "$RUN_DIR/engine/WS11WineCX64Bit19.0.2.tar"
 
+if [ $USE_SAVED_ARCHIVES -eq 0 ]
+then
+  echo "Downloading Wrapper..."
+  curl -sqL "https://github.com/Gcenx/WineskinServer/blob/fb52fb2e5452431a4913c1ae2c545fd72c9a0cca/Wrapper/Wineskin-2.9.0.7-rc1.app.tar.7z"\
+   -o "$RUN_DIR/master_wrapper/Wineskin-2.9.0.7-rc1.app.tar.7z"
+else
+  echo "Copying saved Wrapper..."
+  cp "$CWD/archives/Wineskin-2.9.0.7-rc1.app.tar.7z" "$RUN_DIR/master_wrapper/Wineskin-2.9.0.7-rc1.app.tar.7z"
+fi
+
+7za x "$RUN_DIR/master_wrapper/Wineskin-2.9.0.7-rc1.app.tar.7z" "-o$RUN_DIR/master_wrapper" 1> /dev/null
+
+tar zxf "$RUN_DIR/master_wrapper/Wineskin-2.9.0.7-rc1.app.tar" -C "$RUN_DIR/master_wrapper"
+
+rm "$RUN_DIR/master_wrapper/Wineskin-2.9.0.7-rc1.app.tar.7z"
+rm "$RUN_DIR/master_wrapper/Wineskin-2.9.0.7-rc1.app.tar"
+
 ###################
 # Set up SteamCMD #
 ###################
